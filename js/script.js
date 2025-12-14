@@ -1,12 +1,12 @@
-// JavaScript for Email Subscription and QR Code
+// JavaScript for Contact Form and QR Code
 
 document.addEventListener('DOMContentLoaded', () => {
-    const subscribeForm = document.getElementById('subscribe-form');
+    const contactForm = document.getElementById('contact-form');
     const emailInput = document.getElementById('email-input');
-    const subscribeMessage = document.getElementById('subscribe-message');
+    const contactMessage = document.getElementById('contact-message');
     const qrCodeImg = document.getElementById('qr-code-img');
 
-    // --- Email Subscription Logic ---
+    // --- Contact Form Logic ---
 
     // Function to validate email format
     const isValidEmail = (email) => {
@@ -17,41 +17,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to display a message to the user
     const showMessage = (message, isSuccess = true) => {
-        subscribeMessage.textContent = message;
-        subscribeMessage.style.display = 'block';
-        subscribeMessage.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da'; // Green for success, red for error
-        subscribeMessage.style.color = isSuccess ? '#155724' : '#721c24';
-        subscribeMessage.style.borderColor = isSuccess ? '#c3e6cb' : '#f5c6cb';
+        contactMessage.textContent = message;
+        contactMessage.style.display = 'block';
+        contactMessage.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da'; // Green for success, red for error
+        contactMessage.style.color = isSuccess ? '#155724' : '#721c24';
+        contactMessage.style.borderColor = isSuccess ? '#c3e6cb' : '#f5c6cb';
 
         // Hide message after 5 seconds
         setTimeout(() => {
-            subscribeMessage.style.display = 'none';
+            contactMessage.style.display = 'none';
         }, 5000);
     };
 
     // Handle form submission
-    if (subscribeForm) {
-        subscribeForm.addEventListener('submit', (event) => {
+    if (contactForm) {
+        contactForm.addEventListener('submit', (event) => {
             event.preventDefault(); // Prevent default form submission
 
             const email = emailInput.value.trim();
 
             if (isValidEmail(email)) {
-                // Simulate sending email
-                console.log(`Simulating email send to: AbuBakr.Pharmacy00@gmail.com with subscriber: ${email}`);
+                // Open email client to send message
+                const subject = encodeURIComponent('Contact from Portfolio Website');
+                const body = encodeURIComponent(`Hello, I contacted you from your portfolio website.\n\nMy email is: ${email}\n\n[Your message here]`);
 
-                // Store email in localStorage
-                let subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
-                if (!subscribers.includes(email)) {
-                    subscribers.push(email);
-                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
-                    showMessage('Thank you for subscribing! Your email has been stored locally.', true);
-                } else {
-                    showMessage('You are already subscribed!', false);
-                }
+                // Open the default email client
+                window.location.href = `mailto:AbuBakr.Pharmacy00@gmail.com?subject=${subject}&body=${body}`;
+
+                showMessage('Opening your email client...', true);
 
                 emailInput.value = ''; // Clear the input field
-
             } else {
                 showMessage('Please enter a valid email address.', false);
             }

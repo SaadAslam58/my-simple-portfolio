@@ -126,17 +126,17 @@ section:last-of-type {
     border-top: 1px dashed #eee;
 }
 
-/* Email Subscription Section */
-#subscribe {
+/* Contact Section */
+#contact {
     text-align: center;
     padding: 40px 20px;
 }
 
-#subscribe h3 {
+#contact h3 {
     color: #007bff;
 }
 
-#subscribe-form input[type="email"] {
+#contact-form input[type="email"] {
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ddd;
@@ -145,7 +145,7 @@ section:last-of-type {
     max-width: 300px;
 }
 
-#subscribe-form button {
+#contact-form button {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -155,11 +155,11 @@ section:last-of-type {
     transition: background-color 0.3s ease;
 }
 
-#subscribe-form button:hover {
+#contact-form button:hover {
     background-color: #0056b3;
 }
 
-#subscribe-message {
+#contact-message {
     margin-top: 15px;
     padding: 10px;
     border-radius: 5px;
